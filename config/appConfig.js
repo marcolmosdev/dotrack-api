@@ -3,8 +3,8 @@ require('dotenv').config();
 module.exports = {
   production: true,
   swagger: {
-    user: process.env.swagger_user,
-    password: process.env.swagger_password
+    user: process.env.SWAGGER_USER,
+    password: process.env.SWAGGER_PASSWORD
   },
   supabase: {
     url: process.env.SUPABASE_URL,
