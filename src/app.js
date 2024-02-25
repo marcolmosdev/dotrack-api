@@ -26,7 +26,7 @@ app.use(compression());
 if (config.production) {
   app.use(
     cors({
-      origin: 'https://lonper.vercel.app',
+      origin: 'https://dotrack.vercel.app',
       credentials: true
     })
   );
