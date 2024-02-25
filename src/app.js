@@ -26,15 +26,13 @@ app.use(compression());
 if (config.production) {
   app.use(
     cors({
-      origin: 'https://dotrack.vercel.app',
-      credentials: true
+      origin: 'https://dotrack.vercel.app'
     })
   );
 } else {
   app.use(
     cors({
-      origin: 'http://localhost:4200',
-      credentials: true
+      origin: 'http://localhost:4200'
     })
   );
 }
