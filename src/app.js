@@ -40,7 +40,7 @@ if (config.production) {
 /* SWAGGER CONFIG */
 
 const options = {
-  definition: { openapi: '3.0.0', info: { title: 'Lonper API', version: '1.0.0' } },
+  definition: { openapi: '3.0.0', info: { title: 'Do Track API', version: '1.0.0' } },
   apis: ['./src/api/routers/*.js', './src/api/index.js']
 };
 
