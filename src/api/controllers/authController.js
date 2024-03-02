@@ -1,4 +1,3 @@
-const express = require('express');
 const axios = require('axios');
 const config = require('../../../config/appConfig');
 
@@ -32,8 +31,16 @@ class AuthController {
         sameSite: 'none',
         secure: true
       });
-      // Redirects user back to the frontend of the application
-      res.redirect('/');
+
+      // Fetches the user's GitHub profile
+      const { data: userData } = await axios.get('https://api.github.com/user', {
+        headers: {
+          Authorization: `token ${accessToken}`
+        }
+      });
+
+      // Returns the user data
+      res.status(200).json(userData);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
@@ -55,8 +62,6 @@ class AuthController {
     // Prevent caching of response
     res.set('Cache-Control', 'no-store');
 
-    console.log('Cookies:', req.cookies);
-
     // Extract the access token from the cookie
     const accessToken = req.cookies.accessToken;
 
@@ -69,6 +74,9 @@ class AuthController {
   }
 
   static getCurrentUser(req, res, next, endpoint = true) {
+    // Prevent caching of response
+    res.set('Cache-Control', 'no-store');
+
     const accessToken = req.cookies.accessToken;
 
     if (!accessToken) {
